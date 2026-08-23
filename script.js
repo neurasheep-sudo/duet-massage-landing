@@ -1,5 +1,8 @@
 window.dataLayer = window.dataLayer || [];
 
+let currentModalImages = [];
+let currentModalIndex = 0;
+
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Аналитика: отслеживание кликов по кнопкам WhatsApp
     const whatsappButtons = document.querySelectorAll('a[href*="wa.me"]');
@@ -15,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2. Аналитика: отслеживание звонков
+    // 2. Аналитика: звонки
     const callButtons = document.querySelectorAll('a[href^="tel:"]');
     callButtons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -27,11 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Логика переключения слайдера (Свайпы + Клики)
+    // 3. Инициализация слайдеров и полноэкранного просмотра
     initCardSliders();
+    initLightbox();
 });
 
-// Универсальная функция смены слайда
 function switchCardImage(card, newIndex) {
     const images = card.querySelectorAll('.slide-img');
     const dots = card.querySelectorAll('.dot');
@@ -39,7 +42,6 @@ function switchCardImage(card, newIndex) {
 
     if (total <= 1) return;
 
-    // Зацикливание (с последнего на первый и наоборот)
     if (newIndex >= total) newIndex = 0;
     if (newIndex < 0) newIndex = total - 1;
 
@@ -53,13 +55,11 @@ function switchCardImage(card, newIndex) {
     card.setAttribute('data-current', newIndex);
 }
 
-// Клик по точкам
 window.changeSlide = function(dotElement, slideIndex) {
     const card = dotElement.closest('.team-card');
     switchCardImage(card, slideIndex);
 };
 
-// Инициализация свайпов для телефонов и кликов для ПК
 function initCardSliders() {
     const cards = document.querySelectorAll('.team-card');
 
@@ -68,45 +68,120 @@ function initCardSliders() {
         if (!wrapper) return;
 
         let startX = 0;
-        let endX = 0;
+        let startY = 0;
+        let isTouchMoved = false;
 
-        // Тач-события для мобилок (Свайп)
         wrapper.addEventListener('touchstart', (e) => {
-            startX = e.changedTouches[0].clientX;
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isTouchMoved = false;
+        }, { passive: true });
+
+        wrapper.addEventListener('touchmove', (e) => {
+            const diffX = Math.abs(e.touches[0].clientX - startX);
+            const diffY = Math.abs(e.touches[0].clientY - startY);
+            if (diffX > 10 || diffY > 10) {
+                isTouchMoved = true;
+            }
         }, { passive: true });
 
         wrapper.addEventListener('touchend', (e) => {
-            endX = e.changedTouches[0].clientX;
-            handleSwipe(card, startX, endX);
-        }, { passive: true });
-
-        // Клик мышкой на ПК (левая половина — назад, правая — вперед)
-        wrapper.addEventListener('click', (e) => {
-            // Игнорируем клик, если нажали точно на панель с точками
-            if (e.target.closest('.slider-dots')) return;
-
-            const rect = wrapper.getBoundingClientRect();
-            const clickPositionX = e.clientX - rect.left;
+            const endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+            const threshold = 35;
             let current = parseInt(card.getAttribute('data-current') || '0', 10);
 
-            if (clickPositionX > rect.width / 2) {
-                switchCardImage(card, current + 1); // Вперед
-            } else {
-                switchCardImage(card, current - 1); // Назад
+            if (Math.abs(diffX) > threshold) {
+                // Это был свайп
+                if (diffX > 0) {
+                    switchCardImage(card, current + 1);
+                } else {
+                    switchCardImage(card, current - 1);
+                }
+            } else if (!isTouchMoved) {
+                // Это был короткий тап -> открываем полноэкранный режим
+                if (!e.target.closest('.slider-dots')) {
+                    openModalForCard(card);
+                }
             }
+        }, { passive: true });
+
+        // Клик мыши на ПК
+        wrapper.addEventListener('click', (e) => {
+            if (e.target.closest('.slider-dots')) return;
+            openModalForCard(card);
         });
     });
 }
 
-function handleSwipe(card, startX, endX) {
-    const threshold = 35; // Минимальная длина свайпа в пикселях
-    let current = parseInt(card.getAttribute('data-current') || '0', 10);
+// Полноэкранный Lightbox
+function openModalForCard(card) {
+    const imgs = card.querySelectorAll('.slide-img');
+    currentModalImages = Array.from(imgs).map(img => img.src);
+    currentModalIndex = parseInt(card.getAttribute('data-current') || '0', 10);
+    
+    updateModalView();
+    document.getElementById('imageModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
-    if (startX - endX > threshold) {
-        // Свайп влево -> следующее фото
-        switchCardImage(card, current + 1);
-    } else if (endX - startX > threshold) {
-        // Свайп вправо -> предыдущее фото
-        switchCardImage(card, current - 1);
-    }
+function updateModalView() {
+    const modalImg = document.getElementById('modalImg');
+    const curSpan = document.getElementById('modalCurrentIndex');
+    const totalSpan = document.getElementById('modalTotalCount');
+
+    modalImg.src = currentModalImages[currentModalIndex];
+    curSpan.textContent = currentModalIndex + 1;
+    totalSpan.textContent = currentModalImages.length;
+}
+
+function initLightbox() {
+    const modal = document.getElementById('imageModal');
+    const closeBtn = document.querySelector('.modal-close');
+    const prevBtn = document.querySelector('.modal-prev');
+    const nextBtn = document.querySelector('.modal-next');
+
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.classList.contains('modal-content-wrapper')) {
+            closeModal();
+        }
+    });
+
+    prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentModalIndex = (currentModalIndex - 1 + currentModalImages.length) % currentModalImages.length;
+        updateModalView();
+    });
+
+    nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentModalIndex = (currentModalIndex + 1) % currentModalImages.length;
+        updateModalView();
+    });
+
+    // Свайпы внутри полноэкранного режима
+    let mStartX = 0;
+    modal.addEventListener('touchstart', (e) => {
+        mStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    modal.addEventListener('touchend', (e) => {
+        const mEndX = e.changedTouches[0].clientX;
+        const diff = mStartX - mEndX;
+        if (Math.abs(diff) > 40) {
+            if (diff > 0) {
+                currentModalIndex = (currentModalIndex + 1) % currentModalImages.length;
+            } else {
+                currentModalIndex = (currentModalIndex - 1 + currentModalImages.length) % currentModalImages.length;
+            }
+            updateModalView();
+        }
+    }, { passive: true });
+}
+
+function closeModal() {
+    document.getElementById('imageModal').classList.remove('active');
+    document.body.style.overflow = '';
 }

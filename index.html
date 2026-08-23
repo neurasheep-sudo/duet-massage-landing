@@ -285,7 +285,18 @@
             <span>📞 Zadzwoń</span>
         </a>
     </div>
-
-    <script src="script.js"></script>
+<!-- Полноэкранный Lightbox для просмотра фото -->
+    <div id="imageModal" class="image-modal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-content-wrapper">
+            <img class="modal-image" id="modalImg" src="" alt="Full view">
+        </div>
+        <div class="modal-nav">
+            <span class="modal-prev">&#10094;</span>
+            <span class="modal-counter"><span id="modalCurrentIndex">1</span> / <span id="modalTotalCount">1</span></span>
+            <span class="modal-next">&#10095;</span>
+        </div>
+    </div>
+    <script src="script.js?v=3.0"></script>
 </body>
 </html>
