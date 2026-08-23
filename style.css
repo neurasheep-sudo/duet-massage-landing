@@ -243,6 +243,8 @@ html {
     height: 320px;
     background: #111;
     overflow: hidden;
+    cursor: pointer;
+    user-select: none;
 }
 
 .slider-track {
