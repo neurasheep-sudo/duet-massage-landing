@@ -1,4 +1,3 @@
-/* --- Сброс и базовые переменные --- */
 :root {
     --bg-main: #0d0e11;
     --bg-card: #16181d;
@@ -31,7 +30,7 @@ html {
     padding: 0 20px;
 }
 
-/* --- Шапка (Header) --- */
+/* Header */
 .header {
     padding: 16px 0;
     background: rgba(13, 14, 17, 0.95);
@@ -81,7 +80,7 @@ html {
     text-decoration: none;
     font-size: 13px;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
 }
 
 .btn-call-header:hover {
@@ -89,9 +88,9 @@ html {
     color: #000;
 }
 
-/* --- Hero Секция --- */
+/* Hero */
 .hero {
-    padding: 60px 0 50px;
+    padding: 50px 0 40px;
     text-align: center;
     background: radial-gradient(circle at top, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
 }
@@ -108,25 +107,24 @@ html {
 
 .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 34px;
+    font-size: 32px;
     line-height: 1.2;
-    margin-bottom: 18px;
-    color: var(--text-white);
+    margin-bottom: 15px;
 }
 
 .hero-subtitle {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.6;
     color: var(--text-gray);
-    max-width: 650px;
-    margin: 0 auto 30px;
+    max-width: 600px;
+    margin: 0 auto 25px;
 }
 
 .hero-actions {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 45px;
+    margin-bottom: 30px;
     flex-wrap: wrap;
 }
 
@@ -134,23 +132,18 @@ html {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 14px 28px;
+    padding: 12px 26px;
     border-radius: 30px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
 }
 
 .btn-whatsapp {
     background: var(--whatsapp);
     color: #fff;
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.25);
-}
-
-.btn-whatsapp:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.35);
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);
 }
 
 .btn-outline {
@@ -159,156 +152,223 @@ html {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.btn-outline:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-}
-
-/* Триггеры доверия */
-.trust-bar {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    max-width: 800px;
+/* Happy Hours Banner */
+.happy-hours-banner {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(22, 24, 29, 0.9));
+    border: 1px solid var(--gold);
+    border-radius: 14px;
+    max-width: 550px;
     margin: 0 auto;
-    padding-top: 25px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.trust-item strong {
-    display: block;
-    color: var(--gold);
-    font-size: 18px;
-    margin-bottom: 4px;
-}
-
-.trust-item span {
-    font-size: 12px;
-    color: var(--text-gray);
-}
-
-/* --- Секция Каталога Программ --- */
-.section-programs {
-    padding: 60px 0;
-}
-
-.section-title {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.section-title h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    margin-bottom: 8px;
-}
-
-.section-title p {
-    color: var(--text-gray);
-    font-size: 14px;
-}
-
-.programs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-}
-
-.card-program {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 28px;
+    padding: 16px 20px;
     display: flex;
-    flex-direction: column;
-    position: relative;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
 }
 
-.card-program:hover {
-    transform: translateY(-5px);
-    border-color: var(--gold);
-    background: var(--bg-card-hover);
-}
-
-.card-program.featured {
-    border-color: var(--gold);
-    background: linear-gradient(180deg, #1d1b17 0%, var(--bg-card) 100%);
-}
-
-.badge-featured {
-    position: absolute;
-    top: -12px;
-    right: 20px;
+.hh-badge {
     background: var(--gold);
     color: #000;
     font-size: 11px;
     font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 12px;
+    padding: 6px 10px;
+    border-radius: 8px;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+.hh-content h3 {
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+.hh-content p {
+    font-size: 13px;
+    color: var(--text-gray);
+}
+
+.hh-content strong {
+    color: #22c55e;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #ef4444;
+}
+
+/* Секция Команды */
+.section-team {
+    padding: 50px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.section-title p {
+    color: var(--text-gray);
+    font-size: 13px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.team-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.team-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+}
+
+.team-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background: #111;
+}
+
+.team-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.status-online {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(13, 14, 17, 0.85);
+    color: #22c55e;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.team-info {
+    padding: 16px;
+    text-align: center;
+}
+
+.team-info h3 {
+    font-size: 18px;
+    margin-bottom: 2px;
+}
+
+.team-specialty {
+    display: block;
+    color: var(--gold);
+    font-size: 12px;
     margin-bottom: 12px;
 }
 
-.card-header h3 {
-    font-size: 18px;
-    color: var(--text-white);
-}
-
-.card-duration {
-    font-size: 12px;
+.btn-book-team {
+    display: inline-block;
+    width: 100%;
+    padding: 8px 0;
+    background: transparent;
+    border: 1px solid var(--gold);
     color: var(--gold);
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 12px;
     font-weight: 600;
+    transition: all 0.3s;
 }
 
-.card-desc {
-    color: var(--text-gray);
-    font-size: 13px;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    flex-grow: 1;
+.btn-book-team:hover {
+    background: var(--gold);
+    color: #000;
 }
 
-.card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 15px;
+/* Ценник */
+.section-programs {
+    padding: 50px 0;
 }
 
-.price {
-    font-size: 13px;
-    color: var(--text-gray);
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
 }
 
-.price span {
-    font-size: 20px;
+.price-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.price-box.featured {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, #1f1c16 0%, var(--bg-card) 100%);
+}
+
+.badge-featured {
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    background: var(--gold);
+    color: #000;
+    font-size: 10px;
     font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
+.price-box h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.price-box .time {
+    font-size: 12px;
+    color: var(--text-gray);
+    margin-bottom: 15px;
+}
+
+.price-box .cost {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.price-box .cost span {
+    font-size: 15px;
     color: var(--text-white);
 }
 
 .btn-book {
-    background: transparent;
-    color: var(--text-white);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 8px 18px;
+    display: inline-block;
+    width: 100%;
+    padding: 8px 0;
     border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    transition: all 0.2s;
-}
-
-.btn-book:hover {
-    background: var(--text-white);
-    color: #000;
 }
 
 .btn-book-gold {
@@ -317,63 +377,96 @@ html {
     border: none;
 }
 
-.btn-book-gold:hover {
-    background: var(--gold-hover);
+/* Додатки */
+.section-addons {
+    padding: 40px 0;
 }
 
-/* --- Секция Конфиденциальности --- */
+.addons-list {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 10px 20px;
+}
+
+.addon-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.addon-item:last-child {
+    border-bottom: none;
+}
+
+.addon-name {
+    font-size: 13px;
+    color: var(--text-white);
+}
+
+.addon-price {
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 14px;
+}
+
+/* Конфиденциальность */
 .section-privacy {
-    padding: 40px 0 80px;
+    padding: 40px 0 70px;
 }
 
 .privacy-box {
     background: var(--bg-card);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: 35px;
+    border-radius: 14px;
+    padding: 30px;
     text-align: center;
 }
 
 .privacy-box h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    margin-bottom: 25px;
+    font-size: 22px;
+    margin-bottom: 20px;
 }
 
 .privacy-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
     text-align: left;
 }
 
 .privacy-item h4 {
     color: var(--gold);
-    font-size: 15px;
-    margin-bottom: 8px;
+    font-size: 14px;
+    margin-bottom: 6px;
 }
 
 .privacy-item p {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.5;
     color: var(--text-gray);
 }
 
-/* --- Подвал (Footer) --- */
+/* Подвал */
 .footer {
-    padding: 25px 0 90px; /* Отступ снизу для плавающего мобильного бара */
+    padding: 20px 0 90px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-gray);
 }
 
 .disclaimer {
-    margin-top: 6px;
+    margin-top: 4px;
     color: #ef4444;
 }
 
-/* --- Sticky Mobile Contact Bar --- */
+/* Sticky Mobile */
 .mobile-sticky-bar {
     display: none;
     position: fixed;
@@ -393,12 +486,11 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px;
-    border-radius: 10px;
-    font-size: 14px;
+    padding: 11px;
+    border-radius: 8px;
+    font-size: 13px;
     font-weight: 700;
     text-decoration: none;
-    text-align: center;
 }
 
 .sticky-whatsapp {
@@ -411,129 +503,21 @@ html {
     color: #000;
 }
 
-/* --- Адаптивность для смартфонов (Mobile Responsive) --- */
 @media (max-width: 768px) {
     .header-contacts .location-badge {
         display: none;
     }
-    
     .hero h1 {
-        font-size: 26px;
+        font-size: 24px;
     }
-
-    .trust-bar {
-        grid-template-columns: 1fr;
-        gap: 12px;
+    .happy-hours-banner {
+        flex-direction: column;
+        text-align: center;
     }
-
     .mobile-sticky-bar {
         display: flex;
     }
-
     .hero-actions .btn {
         width: 100%;
     }
-}
-/* --- Секция Мастеров --- */
-.section-team {
-    padding: 60px 0;
-    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.04) 0%, transparent 80%);
-}
-
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.team-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.team-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--gold);
-}
-
-.team-image-wrapper {
-    position: relative;
-    width: 100%;
-    height: 340px;
-    overflow: hidden;
-}
-
-.team-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.team-card:hover .team-img {
-    transform: scale(1.04);
-}
-
-.status-online {
-    position: absolute;
-    bottom: 12px;
-    left: 12px;
-    background: rgba(13, 14, 17, 0.85);
-    color: #22c55e;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    backdrop-filter: blur(5px);
-}
-
-.team-info {
-    padding: 22px;
-    text-align: center;
-}
-
-.team-info h3 {
-    font-size: 20px;
-    color: var(--text-white);
-    margin-bottom: 4px;
-}
-
-.team-specialty {
-    display: block;
-    color: var(--gold);
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 12px;
-}
-
-.team-desc {
-    color: var(--text-gray);
-    font-size: 13px;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-
-.btn-book-team {
-    display: inline-block;
-    width: 100%;
-    padding: 10px 0;
-    background: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.btn-book-team:hover {
-    background: var(--gold);
-    color: #000;
 }
