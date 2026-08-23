@@ -53,19 +53,33 @@
         </section>
 
         <!-- Блок Мастеров -->
+        <!-- Блок Мастеров с галереями -->
         <section class="section-team">
             <div class="container">
                 <div class="section-title">
                     <span class="badge-gold">Nasz Zespół</span>
                     <h2>Wybierz Swoją Masażystkę</h2>
-                    <p>Zmysłowe, wykwalifikowane masażystki gotowe zadbać o Twój komfort</p>
+                    <p>Kliknij kropki na zdjęciu, aby zobaczyć więcej fotografii</p>
                 </div>
 
                 <div class="team-grid">
-                    <!-- Мастер 1: Eliza -->
-                    <div class="team-card">
+                    <!-- Мастер 1: Eliza (5 фото) -->
+                    <div class="team-card" data-current="0">
                         <div class="team-image-wrapper">
-                            <img src="img/girl1_1.jpg" alt="Masażystka Eliza" class="team-img" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&h=750&q=80'">
+                            <div class="slider-track">
+                                <img src="img/girl1_1.jpg" alt="Eliza 1" class="slide-img active">
+                                <img src="img/girl1_2.jpg" alt="Eliza 2" class="slide-img">
+                                <img src="img/girl1_3.jpg" alt="Eliza 3" class="slide-img">
+                                <img src="img/girl1_4.jpg" alt="Eliza 4" class="slide-img">
+                                <img src="img/girl1_5.jpg" alt="Eliza 5" class="slide-img">
+                            </div>
+                            <div class="slider-dots">
+                                <span class="dot active" onclick="changeSlide(this, 0)"></span>
+                                <span class="dot" onclick="changeSlide(this, 1)"></span>
+                                <span class="dot" onclick="changeSlide(this, 2)"></span>
+                                <span class="dot" onclick="changeSlide(this, 3)"></span>
+                                <span class="dot" onclick="changeSlide(this, 4)"></span>
+                            </div>
                             <div class="status-online">● Dostępna dzisiaj</div>
                         </div>
                         <div class="team-info">
@@ -75,10 +89,19 @@
                         </div>
                     </div>
 
-                    <!-- Мастер 2: Łucja -->
-                    <div class="team-card">
+                    <!-- Мастер 2: Łucja (3 фото) -->
+                    <div class="team-card" data-current="0">
                         <div class="team-image-wrapper">
-                            <img src="img/girl2_1.jpg" alt="Masażystka Łucja" class="team-img" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&h=750&q=80'">
+                            <div class="slider-track">
+                                <img src="img/girl2_1.jpg" alt="Łucja 1" class="slide-img active">
+                                <img src="img/girl2_2.jpg" alt="Łucja 2" class="slide-img">
+                                <img src="img/girl2_3.jpg" alt="Łucja 3" class="slide-img">
+                            </div>
+                            <div class="slider-dots">
+                                <span class="dot active" onclick="changeSlide(this, 0)"></span>
+                                <span class="dot" onclick="changeSlide(this, 1)"></span>
+                                <span class="dot" onclick="changeSlide(this, 2)"></span>
+                            </div>
                             <div class="status-online">● Dostępna dzisiaj</div>
                         </div>
                         <div class="team-info">
@@ -88,10 +111,19 @@
                         </div>
                     </div>
 
-                    <!-- Мастер 3: Sandra -->
-                    <div class="team-card">
+                    <!-- Мастер 3: Sandra (3 фото) -->
+                    <div class="team-card" data-current="0">
                         <div class="team-image-wrapper">
-                            <img src="img/girl3_1.jpg" alt="Masażystka Sandra" class="team-img" onerror="this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&h=750&q=80'">
+                            <div class="slider-track">
+                                <img src="img/girl3_1.jpg" alt="Sandra 1" class="slide-img active">
+                                <img src="img/girl3_2.jpg" alt="Sandra 2" class="slide-img">
+                                <img src="img/girl3_3.jpg" alt="Sandra 3" class="slide-img">
+                            </div>
+                            <div class="slider-dots">
+                                <span class="dot active" onclick="changeSlide(this, 0)"></span>
+                                <span class="dot" onclick="changeSlide(this, 1)"></span>
+                                <span class="dot" onclick="changeSlide(this, 2)"></span>
+                            </div>
                             <div class="status-online">● Dostępna dzisiaj</div>
                         </div>
                         <div class="team-info">
@@ -101,15 +133,26 @@
                         </div>
                     </div>
 
-                    <!-- Мастер 4: Dagmara -->
-                    <div class="team-card">
+                    <!-- Мастер 4: Dagmara (4 фото) -->
+                    <div class="team-card" data-current="0">
                         <div class="team-image-wrapper">
-                            <img src="img/girl4_1.jpg" alt="Masażystka Dagmara" class="team-img" onerror="this.src='https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&h=750&q=80'">
+                            <div class="slider-track">
+                                <img src="img/girl4_1.jpg" alt="Dagmara 1" class="slide-img active">
+                                <img src="img/girl4_2.jpg" alt="Dagmara 2" class="slide-img">
+                                <img src="img/girl4_3.jpg" alt="Dagmara 3" class="slide-img">
+                                <img src="img/girl4_4.jpg" alt="Dagmara 4" class="slide-img">
+                            </div>
+                            <div class="slider-dots">
+                                <span class="dot active" onclick="changeSlide(this, 0)"></span>
+                                <span class="dot" onclick="changeSlide(this, 1)"></span>
+                                <span class="dot" onclick="changeSlide(this, 2)"></span>
+                                <span class="dot" onclick="changeSlide(this, 3)"></span>
+                            </div>
                             <div class="status-online">● Dostępna dzisiaj</div>
                         </div>
                         <div class="team-info">
                             <h3>Dagmara</h3>
-                            <span class="team-specialty">Głęboki Relaks & Masaż na 4 Ręce</span>
+                            <span class="team-specialty">Głęboki Relaks & Masaż w Duecie</span>
                             <a href="https://wa.me/48000000000?text=Chcia%C5%82bym%20um%C3%B3wi%C4%87%20wizyt%C4%99%20do%20Dagmary" class="btn-book-team" data-target="Dagmara">Umów z Dagmarą</a>
                         </div>
                     </div>

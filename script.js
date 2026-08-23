@@ -28,3 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+// Функция переключения фото в карточке мастера
+window.changeSlide = function(dotElement, slideIndex) {
+    const card = dotElement.closest('.team-card');
+    const images = card.querySelectorAll('.slide-img');
+    const dots = card.querySelectorAll('.dot');
+
+    images.forEach(img => img.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+
+    if (images[slideIndex]) {
+        images[slideIndex].classList.add('active');
+    }
+    dotElement.classList.add('active');
+};
