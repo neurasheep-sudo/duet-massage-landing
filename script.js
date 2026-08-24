@@ -1,187 +1,162 @@
 window.dataLayer = window.dataLayer || [];
 
-let currentModalImages = [];
-let currentModalIndex = 0;
-
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Аналитика: отслеживание кликов по кнопкам WhatsApp
-    const whatsappButtons = document.querySelectorAll('a[href*="wa.me"]');
-    whatsappButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const masterName = btn.getAttribute('data-target') || 'General';
-            window.dataLayer.push({
-                event: 'contact_whatsapp',
-                lead_type: 'WhatsApp Click',
-                target_master: masterName
-            });
-            console.log(`[DataLayer] Lead Event: WhatsApp (${masterName})`);
-        });
-    });
-
-    // 2. Аналитика: звонки
-    const callButtons = document.querySelectorAll('a[href^="tel:"]');
-    callButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            window.dataLayer.push({
-                event: 'contact_call',
-                lead_type: 'Direct Call'
-            });
-            console.log('[DataLayer] Lead Event: Direct Call');
-        });
-    });
-
-    // 3. Инициализация слайдеров и полноэкранного просмотра
-    initCardSliders();
-    initLightbox();
-});
-
-function switchCardImage(card, newIndex) {
-    const images = card.querySelectorAll('.slide-img');
-    const dots = card.querySelectorAll('.dot');
-    const total = images.length;
-
-    if (total <= 1) return;
-
-    if (newIndex >= total) newIndex = 0;
-    if (newIndex < 0) newIndex = total - 1;
-
-    images.forEach(img => img.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
-
-    images[newIndex].classList.add('active');
-    if (dots[newIndex]) {
-        dots[newIndex].classList.add('active');
+// База данных мастеров
+const mastersData = {
+    eliza: {
+        name: "Eliza",
+        age: "24",
+        height: "160 cm",
+        weight: "49 kg",
+        breast: "3",
+        langs: "PL, EN, RU, UA",
+        desc: "Masaż relaksacyjny, tantryczny oraz rytuały body-to-body w pełnej dyskrecji.",
+        photos: [
+            "img/girl1_1.jpg",
+            "img/girl1_2.jpg",
+            "img/girl1_3.jpg",
+            "img/girl1_4.jpg",
+            "img/girl1_5.jpg"
+        ]
+    },
+    lucja: {
+        name: "Łucja",
+        age: "24",
+        height: "165 cm",
+        weight: "49 kg",
+        breast: "3",
+        langs: "PL, EN, DE",
+        desc: "Masaż relaksacyjny, tantryczny oraz rytuały body-to-body w pełnej dyskrecji.",
+        photos: [
+            "img/girl2_1.jpg",
+            "img/girl2_2.jpg",
+            "img/girl2_3.jpg"
+        ]
+    },
+    sandra: {
+        name: "Sandra",
+        age: "25",
+        height: "170 cm",
+        weight: "53 kg",
+        breast: "2",
+        langs: "PL, UA",
+        desc: "Masaż relaksacyjny, tantryczny oraz rytuały body-to-body w pełnej dyskrecji.",
+        photos: [
+            "img/girl3_1.jpg",
+            "img/girl3_2.jpg",
+            "img/girl3_3.jpg"
+        ]
+    },
+    dagmara: {
+        name: "Dagmara",
+        age: "20",
+        height: "167 cm",
+        weight: "66 kg",
+        breast: "4",
+        langs: "PL, EN",
+        desc: "Masaż relaksacyjny, tantryczny oraz rytuały body-to-body w pełnej dyskrecji.",
+        photos: [
+            "img/girl4_1.jpg",
+            "img/girl4_2.jpg",
+            "img/girl4_3.jpg",
+            "img/girl4_4.jpg"
+        ]
     }
-    card.setAttribute('data-current', newIndex);
-}
-
-window.changeSlide = function(dotElement, slideIndex) {
-    const card = dotElement.closest('.team-card');
-    switchCardImage(card, slideIndex);
 };
 
-function initCardSliders() {
-    const cards = document.querySelectorAll('.team-card');
+let activeMasterKey = null;
+let currentPhotoIdx = 0;
 
-    cards.forEach(card => {
-        const wrapper = card.querySelector('.team-image-wrapper');
-        if (!wrapper) return;
-
-        let startX = 0;
-        let startY = 0;
-        let isTouchMoved = false;
-
-        wrapper.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            startY = e.touches[0].clientY;
-            isTouchMoved = false;
-        }, { passive: true });
-
-        wrapper.addEventListener('touchmove', (e) => {
-            const diffX = Math.abs(e.touches[0].clientX - startX);
-            const diffY = Math.abs(e.touches[0].clientY - startY);
-            if (diffX > 10 || diffY > 10) {
-                isTouchMoved = true;
-            }
-        }, { passive: true });
-
-        wrapper.addEventListener('touchend', (e) => {
-            const endX = e.changedTouches[0].clientX;
-            const diffX = startX - endX;
-            const threshold = 35;
-            let current = parseInt(card.getAttribute('data-current') || '0', 10);
-
-            if (Math.abs(diffX) > threshold) {
-                // Это был свайп
-                if (diffX > 0) {
-                    switchCardImage(card, current + 1);
-                } else {
-                    switchCardImage(card, current - 1);
-                }
-            } else if (!isTouchMoved) {
-                // Это был короткий тап -> открываем полноэкранный режим
-                if (!e.target.closest('.slider-dots')) {
-                    openModalForCard(card);
-                }
-            }
-        }, { passive: true });
-
-        // Клик мыши на ПК
-        wrapper.addEventListener('click', (e) => {
-            if (e.target.closest('.slider-dots')) return;
-            openModalForCard(card);
+document.addEventListener('DOMContentLoaded', () => {
+    // Аналитика кликов
+    document.querySelectorAll('a[href*="wa.me"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const master = btn.getAttribute('data-target') || 'General';
+            window.dataLayer.push({ event: 'contact_whatsapp', target_master: master });
         });
     });
-}
 
-// Полноэкранный Lightbox
-function openModalForCard(card) {
-    const imgs = card.querySelectorAll('.slide-img');
-    currentModalImages = Array.from(imgs).map(img => img.src);
-    currentModalIndex = parseInt(card.getAttribute('data-current') || '0', 10);
-    
-    updateModalView();
-    document.getElementById('imageModal').classList.add('active');
+    document.querySelectorAll('a[href^="tel:"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            window.dataLayer.push({ event: 'contact_call' });
+        });
+    });
+
+    // Свайпы внутри окна фото
+    initModalSwipes();
+});
+
+// Открытие модалки профиля
+window.openMasterModal = function(masterKey) {
+    const master = mastersData[masterKey];
+    if (!master) return;
+
+    activeMasterKey = masterKey;
+    currentPhotoIdx = 0;
+
+    document.getElementById('modalMasterName').textContent = master.name;
+    document.getElementById('modalMasterLangs').textContent = `🗣 ${master.langs}`;
+    document.getElementById('modalParamAge').textContent = master.age;
+    document.getElementById('modalParamHeight').textContent = master.height;
+    document.getElementById('modalParamWeight').textContent = master.weight;
+    document.getElementById('modalParamBreast').textContent = master.breast;
+    document.getElementById('modalMasterDesc').textContent = master.desc;
+
+    // Ссылка брони
+    const phone = "48502855086";
+    const msg = encodeURIComponent(`Dzień dobry, chciałbym umówić wizytę do ${master.name}`);
+    const bookBtn = document.getElementById('modalBookingBtn');
+    bookBtn.href = `https://wa.me/${phone}?text=${msg}`;
+    bookBtn.setAttribute('data-target', master.name);
+
+    updateModalPhoto();
+    document.getElementById('masterModal').classList.add('active');
     document.body.style.overflow = 'hidden';
-}
+};
 
-function updateModalView() {
-    const modalImg = document.getElementById('modalImg');
-    const curSpan = document.getElementById('modalCurrentIndex');
-    const totalSpan = document.getElementById('modalTotalCount');
-
-    modalImg.src = currentModalImages[currentModalIndex];
-    curSpan.textContent = currentModalIndex + 1;
-    totalSpan.textContent = currentModalImages.length;
-}
-
-function initLightbox() {
-    const modal = document.getElementById('imageModal');
-    const closeBtn = document.querySelector('.modal-close');
-    const prevBtn = document.querySelector('.modal-prev');
-    const nextBtn = document.querySelector('.modal-next');
-
-    closeBtn.addEventListener('click', closeModal);
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal || e.target.classList.contains('modal-content-wrapper')) {
-            closeModal();
-        }
-    });
-
-    prevBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentModalIndex = (currentModalIndex - 1 + currentModalImages.length) % currentModalImages.length;
-        updateModalView();
-    });
-
-    nextBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentModalIndex = (currentModalIndex + 1) % currentModalImages.length;
-        updateModalView();
-    });
-
-    // Свайпы внутри полноэкранного режима
-    let mStartX = 0;
-    modal.addEventListener('touchstart', (e) => {
-        mStartX = e.touches[0].clientX;
-    }, { passive: true });
-
-    modal.addEventListener('touchend', (e) => {
-        const mEndX = e.changedTouches[0].clientX;
-        const diff = mStartX - mEndX;
-        if (Math.abs(diff) > 40) {
-            if (diff > 0) {
-                currentModalIndex = (currentModalIndex + 1) % currentModalImages.length;
-            } else {
-                currentModalIndex = (currentModalIndex - 1 + currentModalImages.length) % currentModalImages.length;
-            }
-            updateModalView();
-        }
-    }, { passive: true });
-}
-
-function closeModal() {
-    document.getElementById('imageModal').classList.remove('active');
+window.closeMasterModal = function() {
+    document.getElementById('masterModal').classList.remove('active');
     document.body.style.overflow = '';
+};
+
+function updateModalPhoto() {
+    const master = mastersData[activeMasterKey];
+    if (!master) return;
+
+    const img = document.getElementById('modalProfileImg');
+    const counter = document.getElementById('modalPhotoCounter');
+
+    img.src = master.photos[currentPhotoIdx];
+    counter.textContent = `${currentPhotoIdx + 1} / ${master.photos.length}`;
+}
+
+window.nextModalPhoto = function() {
+    const master = mastersData[activeMasterKey];
+    if (!master) return;
+    currentPhotoIdx = (currentPhotoIdx + 1) % master.photos.length;
+    updateModalPhoto();
+};
+
+window.prevModalPhoto = function() {
+    const master = mastersData[activeMasterKey];
+    if (!master) return;
+    currentPhotoIdx = (currentPhotoIdx - 1 + master.photos.length) % master.photos.length;
+    updateModalPhoto();
+};
+
+function initModalSwipes() {
+    const box = document.querySelector('.modal-slider-box');
+    let startX = 0;
+
+    box.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    box.addEventListener('touchend', (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        if (Math.abs(diff) > 40) {
+            if (diff > 0) window.nextModalPhoto();
+            else window.prevModalPhoto();
+        }
+    }, { passive: true });
 }

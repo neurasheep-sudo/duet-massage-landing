@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+    <!-- Favicon (иконка во вкладке браузера) -->
+    <link rel="icon" type="image/jpeg" href="img/logo.jpg">
+    <link rel="apple-touch-icon" href="img/logo.jpg">
+
+    <!-- Open Graph / Мета-теги для красивой ссылки в WhatsApp, Telegram, соцсетях -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://neurasheep-sudo.github.io/duet-massage-landing/">
+    <meta property="og:title" content="DUET Studio Masażu Gliwice | Ekskluzywny Relaks">
+    <meta property="og:description" content="Prywatny apartament w centrum Gliwic. Zmysłowy masaż relaksacyjny, 4 profesjonalne masażystki, 100% dyskrecji.">
+    <meta property="og:image" content="https://neurasheep-sudo.github.io/duet-massage-landing/img/logo.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DUET Studio Masażu Gliwice">
+    <meta name="twitter:description" content="Ekskluzywny masaż relaksacyjny dla mężczyzn w centrum Gliwic.">
+    <meta name="twitter:image" content="https://neurasheep-sudo.github.io/duet-massage-landing/img/logo.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duet Massage Gliwice | Ekskluzywny Salon Relaksu</title>
@@ -15,13 +31,16 @@
 </head>
 <body>
 
-    <!-- Шапка -->
+    <!-- Шапка с графическим логотипом -->
     <header class="header">
         <div class="container header-container">
-            <a href="#" class="logo">DUET<span>.MASSAGE</span></a>
+            <a href="#" class="logo-wrapper">
+                <img src="img/logo.jpg" alt="Duet Studio Masażu" class="logo-img">
+                <span class="logo-text">DUET<span>.MASSAGE</span></span>
+            </a>
             <div class="header-contacts">
                 <span class="location-badge">📍 Gliwice Centrum</span>
-                <a href="tel:+48000000000" class="btn-call-header">📞 Zadzwoń</a>
+                <a href="tel:+48502855086" class="btn-call-header">📞 Zadzwoń</a>
             </div>
         </div>
     </header>
@@ -35,7 +54,7 @@
                 <p class="hero-subtitle">Zanurz się w atmosferze zmysłowego odprężenia. Prywatny apartament, luksusowe warunki i pełna dyskrecja.</p>
                 
                 <div class="hero-actions">
-                    <a href="https://wa.me/48000000000?text=Dzie%C5%84%20dobry,%20chcia%C5%82bym%20zapyta%C4%87%20o%20rezerwacj%C4%99" class="btn btn-whatsapp" target="_blank">
+                    <a href="https://wa.me/48502855086?text=Dzie%C5%84%20dobry,%20chcia%C5%82bym%20zapyta%C4%87%20o%20rezerwacj%C4%99" class="btn btn-whatsapp" target="_blank">
                         <span>💬 Rezerwacja WhatsApp</span>
                     </a>
                     <a href="#cennik" class="btn btn-outline">Zobacz Cennik</a>
@@ -52,108 +71,65 @@
             </div>
         </section>
 
-        <!-- Блок Мастеров -->
-        <!-- Блок Мастеров с галереями -->
+       <!-- Лаконичные карточки мастеров -->
         <section class="section-team">
             <div class="container">
                 <div class="section-title">
                     <span class="badge-gold">Nasz Zespół</span>
                     <h2>Wybierz Swoją Masażystkę</h2>
-                    <p>Kliknij kropki na zdjęciu, aby zobaczyć więcej fotografii</p>
+                    <p>Kliknij na profil, aby zobaczyć szczegóły i wszystkie zdjęcia</p>
                 </div>
 
                 <div class="team-grid">
-                    <!-- Мастер 1: Eliza (5 фото) -->
-                    <div class="team-card" data-current="0">
+                    <!-- 1. Eliza -->
+                    <div class="team-card" onclick="openMasterModal('eliza')">
                         <div class="team-image-wrapper">
-                            <div class="slider-track">
-                                <img src="img/girl1_1.jpg" alt="Eliza 1" class="slide-img active">
-                                <img src="img/girl1_2.jpg" alt="Eliza 2" class="slide-img">
-                                <img src="img/girl1_3.jpg" alt="Eliza 3" class="slide-img">
-                                <img src="img/girl1_4.jpg" alt="Eliza 4" class="slide-img">
-                                <img src="img/girl1_5.jpg" alt="Eliza 5" class="slide-img">
-                            </div>
-                            <div class="slider-dots">
-                                <span class="dot active" onclick="changeSlide(this, 0)"></span>
-                                <span class="dot" onclick="changeSlide(this, 1)"></span>
-                                <span class="dot" onclick="changeSlide(this, 2)"></span>
-                                <span class="dot" onclick="changeSlide(this, 3)"></span>
-                                <span class="dot" onclick="changeSlide(this, 4)"></span>
-                            </div>
+                            <img src="img/girl1_1.jpg" alt="Eliza" class="team-cover-img">
                             <div class="status-online">● Dostępna dzisiaj</div>
                         </div>
                         <div class="team-info">
                             <h3>Eliza</h3>
-                            <span class="team-specialty">Masaż Relaksacyjny & Tantryczny</span>
-                            <a href="https://wa.me/48000000000?text=Chcia%C5%82bym%20um%C3%B3wi%C4%87%20wizyt%C4%99%20do%20Elizy" class="btn-book-team" data-target="Eliza">Umów z Elizą</a>
+                            <span class="team-role">Masażystka Premium</span>
+                            <button type="button" class="btn-view-profile">Zobacz profil</button>
                         </div>
                     </div>
 
-                    <!-- Мастер 2: Łucja (3 фото) -->
-                    <div class="team-card" data-current="0">
+                    <!-- 2. Łucja -->
+                    <div class="team-card" onclick="openMasterModal('lucja')">
                         <div class="team-image-wrapper">
-                            <div class="slider-track">
-                                <img src="img/girl2_1.jpg" alt="Łucja 1" class="slide-img active">
-                                <img src="img/girl2_2.jpg" alt="Łucja 2" class="slide-img">
-                                <img src="img/girl2_3.jpg" alt="Łucja 3" class="slide-img">
-                            </div>
-                            <div class="slider-dots">
-                                <span class="dot active" onclick="changeSlide(this, 0)"></span>
-                                <span class="dot" onclick="changeSlide(this, 1)"></span>
-                                <span class="dot" onclick="changeSlide(this, 2)"></span>
-                            </div>
+                            <img src="img/girl2_1.jpg" alt="Łucja" class="team-cover-img">
                             <div class="status-online">● Dostępna dzisiaj</div>
                         </div>
                         <div class="team-info">
                             <h3>Łucja</h3>
-                            <span class="team-specialty">Zmysłowy Dotyk & Nuru</span>
-                            <a href="https://wa.me/48000000000?text=Chcia%C5%82bym%20um%C3%B3wi%C4%87%20wizyt%C4%99%20do%20%C5%81ucji" class="btn-book-team" data-target="Łucja">Umów z Łucją</a>
+                            <span class="team-role">Masażystka Premium</span>
+                            <button type="button" class="btn-view-profile">Zobacz profil</button>
                         </div>
                     </div>
 
-                    <!-- Мастер 3: Sandra (3 фото) -->
-                    <div class="team-card" data-current="0">
+                    <!-- 3. Sandra -->
+                    <div class="team-card" onclick="openMasterModal('sandra')">
                         <div class="team-image-wrapper">
-                            <div class="slider-track">
-                                <img src="img/girl3_1.jpg" alt="Sandra 1" class="slide-img active">
-                                <img src="img/girl3_2.jpg" alt="Sandra 2" class="slide-img">
-                                <img src="img/girl3_3.jpg" alt="Sandra 3" class="slide-img">
-                            </div>
-                            <div class="slider-dots">
-                                <span class="dot active" onclick="changeSlide(this, 0)"></span>
-                                <span class="dot" onclick="changeSlide(this, 1)"></span>
-                                <span class="dot" onclick="changeSlide(this, 2)"></span>
-                            </div>
+                            <img src="img/girl3_1.jpg" alt="Sandra" class="team-cover-img">
                             <div class="status-online">● Dostępna dzisiaj</div>
                         </div>
                         <div class="team-info">
                             <h3>Sandra</h3>
-                            <span class="team-specialty">Rytuały Orientalne & Body-to-Body</span>
-                            <a href="https://wa.me/48000000000?text=Chcia%C5%82bym%20um%C3%B3wi%C4%87%20wizyt%C4%99%20do%20Sandry" class="btn-book-team" data-target="Sandra">Umów z Sandrą</a>
+                            <span class="team-role">Masażystka Premium</span>
+                            <button type="button" class="btn-view-profile">Zobacz profil</button>
                         </div>
                     </div>
 
-                    <!-- Мастер 4: Dagmara (4 фото) -->
-                    <div class="team-card" data-current="0">
+                    <!-- 4. Dagmara -->
+                    <div class="team-card" onclick="openMasterModal('dagmara')">
                         <div class="team-image-wrapper">
-                            <div class="slider-track">
-                                <img src="img/girl4_1.jpg" alt="Dagmara 1" class="slide-img active">
-                                <img src="img/girl4_2.jpg" alt="Dagmara 2" class="slide-img">
-                                <img src="img/girl4_3.jpg" alt="Dagmara 3" class="slide-img">
-                                <img src="img/girl4_4.jpg" alt="Dagmara 4" class="slide-img">
-                            </div>
-                            <div class="slider-dots">
-                                <span class="dot active" onclick="changeSlide(this, 0)"></span>
-                                <span class="dot" onclick="changeSlide(this, 1)"></span>
-                                <span class="dot" onclick="changeSlide(this, 2)"></span>
-                                <span class="dot" onclick="changeSlide(this, 3)"></span>
-                            </div>
+                            <img src="img/girl4_1.jpg" alt="Dagmara" class="team-cover-img">
                             <div class="status-online">● Dostępna dzisiaj</div>
                         </div>
                         <div class="team-info">
                             <h3>Dagmara</h3>
-                            <span class="team-specialty">Głęboki Relaks & Masaż w Duecie</span>
-                            <a href="https://wa.me/48000000000?text=Chcia%C5%82bym%20um%C3%B3wi%C4%87%20wizyt%C4%99%20do%20Dagmary" class="btn-book-team" data-target="Dagmara">Umów z Dagmarą</a>
+                            <span class="team-role">Masażystka Premium</span>
+                            <button type="button" class="btn-view-profile">Zobacz profil</button>
                         </div>
                     </div>
                 </div>
@@ -174,7 +150,7 @@
                         <h3>Sesja Ekspresowa</h3>
                         <div class="time">30 minut</div>
                         <div class="cost">200 <span>zł</span></div>
-                        <a href="https://wa.me/48000000000?text=Rezerwacja%20Masa%C5%BC%2030%20min" class="btn-book">Zarezerwuj</a>
+                        <a href="https://wa.me/48502855086?text=Rezerwacja%20Masa%C5%BC%2030%20min" class="btn-book">Zarezerwuj</a>
                     </div>
 
                     <div class="price-box featured">
@@ -182,21 +158,21 @@
                         <h3>Sesja Klasyczna</h3>
                         <div class="time">60 minut (1h)</div>
                         <div class="cost">300 <span>zł</span></div>
-                        <a href="https://wa.me/48000000000?text=Rezerwacja%20Masa%C5%BC%201h" class="btn-book btn-book-gold">Zarezerwuj</a>
+                        <a href="https://wa.me/48502855086?text=Rezerwacja%20Masa%C5%BC%201h" class="btn-book btn-book-gold">Zarezerwuj</a>
                     </div>
 
                     <div class="price-box">
                         <h3>Masaż w Duecie</h3>
                         <div class="time">60 min (2 masażystki)</div>
                         <div class="cost">550 <span>zł</span></div>
-                        <a href="https://wa.me/48000000000?text=Rezerwacja%20Masa%C5%BC%20w%20Duecie" class="btn-book">Zarezerwuj</a>
+                        <a href="https://wa.me/48502855086?text=Rezerwacja%20Masa%C5%BC%20w%20Duecie" class="btn-book">Zarezerwuj</a>
                     </div>
 
                     <div class="price-box">
                         <h3>Sesja VIP Total</h3>
                         <div class="time">120 minut (2h)</div>
                         <div class="cost">600 <span>zł</span></div>
-                        <a href="https://wa.me/48000000000?text=Rezerwacja%20Masa%C5%BC%202h" class="btn-book">Zarezerwuj</a>
+                        <a href="https://wa.me/48502855086?text=Rezerwacja%20Masa%C5%BC%202h" class="btn-book">Zarezerwuj</a>
                     </div>
                 </div>
             </div>
@@ -278,25 +254,50 @@
 
     <!-- Плавающая мобильная панель -->
     <div class="mobile-sticky-bar">
-        <a href="https://wa.me/48000000000?text=Dzie%C5%84%20dobry,%20chcia%C5%82bym%20zapyta%C4%87%20o%20termin" class="sticky-btn sticky-whatsapp" target="_blank">
+        <a href="https://wa.me/48502855086?text=Dzie%C5%84%20dobry,%20chcia%C5%82bym%20zapyta%C4%87%20o%20termin" class="sticky-btn sticky-whatsapp" target="_blank">
             <span>💬 WhatsApp</span>
         </a>
-        <a href="tel:+48000000000" class="sticky-btn sticky-call">
+        <a href="tel:+48502855086" class="sticky-btn sticky-call">
             <span>📞 Zadzwoń</span>
         </a>
     </div>
-<!-- Полноэкранный Lightbox для просмотра фото -->
-    <div id="imageModal" class="image-modal">
-        <span class="modal-close">&times;</span>
-        <div class="modal-content-wrapper">
-            <img class="modal-image" id="modalImg" src="" alt="Full view">
-        </div>
-        <div class="modal-nav">
-            <span class="modal-prev">&#10094;</span>
-            <span class="modal-counter"><span id="modalCurrentIndex">1</span> / <span id="modalTotalCount">1</span></span>
-            <span class="modal-next">&#10095;</span>
+<!-- Модальное окно полного профиля мастера -->
+    <div id="masterModal" class="master-modal">
+        <div class="master-modal-overlay" onclick="closeMasterModal()"></div>
+        <div class="master-modal-content">
+            <button class="modal-close-btn" onclick="closeMasterModal()">&times;</button>
+            
+            <!-- Слайдер внутри модалки -->
+            <div class="modal-slider-box">
+                <img id="modalProfileImg" src="" alt="Master photo" class="modal-main-img">
+                <div class="modal-slider-controls">
+                    <button type="button" class="modal-arrow" onclick="prevModalPhoto()">&#10094;</button>
+                    <span id="modalPhotoCounter" class="modal-photo-counter">1 / 1</span>
+                    <button type="button" class="modal-arrow" onclick="nextModalPhoto()">&#10095;</button>
+                </div>
+            </div>
+
+            <!-- Детали мастера -->
+            <div class="modal-profile-details">
+                <h2 id="modalMasterName">Imię</h2>
+                <div class="modal-badge-row">
+                    <span class="status-pill">● Dostępna</span>
+                    <span id="modalMasterLangs" class="lang-pill">🗣 PL, EN</span>
+                </div>
+                
+                <div class="modal-params-grid">
+                    <div class="param-item"><span>Wiek:</span> <strong id="modalParamAge">24</strong></div>
+                    <div class="param-item"><span>Wzrost:</span> <strong id="modalParamHeight">165 cm</strong></div>
+                    <div class="param-item"><span>Waga:</span> <strong id="modalParamWeight">49 kg</strong></div>
+                    <div class="param-item"><span>Biust:</span> <strong id="modalParamBreast">3</strong></div>
+                </div>
+
+                <p id="modalMasterDesc" class="modal-bio">Masaż relaksacyjny, tantryczny oraz rytuały body-to-body w pełnej dyskrecji.</p>
+
+                <a id="modalBookingBtn" href="#" class="btn-modal-book" target="_blank">Umów wizytę przez WhatsApp</a>
+            </div>
         </div>
     </div>
-    <script src="script.js?v=3.0"></script>
+    <script src="script.js?v=4.0"></script>
 </body>
 </html>
