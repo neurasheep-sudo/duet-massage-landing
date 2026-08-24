@@ -67,21 +67,27 @@ let activeMasterKey = null;
 let currentPhotoIdx = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Аналитика кликов
-    document.querySelectorAll('a[href*="wa.me"]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const master = btn.getAttribute('data-target') || 'General';
-            window.dataLayer.push({ event: 'contact_whatsapp', target_master: master });
-        });
+    // Перехват кликов
+    document.addEventListener('click', (e) => {
+        const waLink = e.target.closest('a[href*="wa.me"]');
+        if (waLink) {
+            const master = waLink.getAttribute('data-target') || (activeMasterKey ? mastersData[activeMasterKey].name : 'General');
+            window.dataLayer.push({
+                event: 'contact_whatsapp',
+                target_master: master
+            });
+            console.log(`[DataLayer] Lead: WhatsApp -> ${master}`);
+        }
+
+        const telLink = e.target.closest('a[href^="tel:"]');
+        if (telLink) {
+            window.dataLayer.push({
+                event: 'contact_call'
+            });
+            console.log('[DataLayer] Lead: Call Click');
+        }
     });
 
-    document.querySelectorAll('a[href^="tel:"]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            window.dataLayer.push({ event: 'contact_call' });
-        });
-    });
-
-    // Свайпы внутри окна фото
     initModalSwipes();
 });
 
