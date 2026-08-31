@@ -32,18 +32,19 @@ const mastersData = {
             "img/girl2_3.jpg"
         ]
     },
-    sandra: {
-        name: "Sandra",
-        age: "25",
+   alina: {
+        name: "Alina",
+        age: "26",
         height: "170 cm",
-        weight: "53 kg",
+        weight: "49 kg",
         breast: "2",
-        langs: "PL, UA",
-        desc: "Masaż relaksacyjny, tantryczny oraz rytuały body-to-body w pełnej dyskrecji.",
+        languages: "PL, EN",
+        bio: "Masaż tantryczny, relaksacyjny oraz zmysłowe rytuały w atmosferze pełnego spokoju i dyskrecji.",
         photos: [
             "img/girl3_1.jpg",
             "img/girl3_2.jpg",
-            "img/girl3_3.jpg"
+            "img/girl3_3.jpg",
+            "img/girl3_4.jpg"
         ]
     },
     dagmara: {

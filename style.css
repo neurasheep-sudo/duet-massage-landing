@@ -947,3 +947,25 @@ html {
     color: var(--text-gray);
     letter-spacing: 1px;
 }
+.disclaimer-legal {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 6px;
+    line-height: 1.4;
+}
+/* Яркий красный акцент для 18+ */
+.footer .disclaimer-18 {
+    color: #ff3333 !important;
+    font-weight: 600;
+    margin: 6px 0;
+    letter-spacing: 0.5px;
+}
+
+/* Юридический дисклеймер под ним */
+.footer .disclaimer-legal {
+    color: #888888;
+    font-size: 0.8rem;
+    max-width: 600px;
+    margin: 6px auto 0 auto;
+    line-height: 1.4;
+}
