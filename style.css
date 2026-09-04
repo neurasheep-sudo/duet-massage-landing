@@ -26,6 +26,7 @@
 .logo-text span {
     color: var(--gold);
 }
+
 :root {
     --bg-main: #0d0e11;
     --bg-card: #16181d;
@@ -49,6 +50,8 @@ html {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--bg-main);
     color: var(--text-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -73,33 +76,6 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.logo-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-}
-
-.logo-img {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid var(--gold);
-}
-
-.logo-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text-white);
-    letter-spacing: 2px;
-}
-
-.logo-text span {
-    color: var(--gold);
 }
 
 .header-contacts {
@@ -270,378 +246,6 @@ html {
     border: 1px solid var(--border-color);
     border-radius: 14px;
     overflow: hidden;
-    transition: transform 0.3s;
-}
-
-.team-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--gold);
-}
-
-/* НОВЫЙ КОД ДЛЯ СЛАЙДЕРА */
-.team-image-wrapper {
-    position: relative;
-    width: 100%;
-    height: 320px;
-    background: #111;
-    overflow: hidden;
-    cursor: pointer;
-    user-select: none;
-}
-
-.slider-track {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.slide-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
-}
-
-.slide-img.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.slider-dots {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    display: flex;
-    gap: 6px;
-    background: rgba(13, 14, 17, 0.65);
-    padding: 5px 8px;
-    border-radius: 12px;
-    backdrop-filter: blur(4px);
-    z-index: 10;
-}
-
-.dot {
-    width: 7px;
-    height: 7px;
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.dot.active {
-    background: var(--gold);
-    transform: scale(1.25);
-}
-
-.status-online {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background: rgba(13, 14, 17, 0.85);
-    color: #22c55e;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 20px;
-    border: 1px solid rgba(34, 197, 94, 0.3);
-}
-
-.team-info {
-    padding: 16px;
-    text-align: center;
-}
-
-.team-info h3 {
-    font-size: 18px;
-    margin-bottom: 2px;
-}
-
-/* НОВЫЙ КОД — ВСТАВИТЬ ВМЕСТО .team-specialty */
-.team-params {
-    color: var(--gold);
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    letter-spacing: 0.3px;
-}
-
-.team-languages {
-    color: #e4e4e7;
-    font-size: 11px;
-    margin-bottom: 8px;
-    opacity: 0.9;
-}
-
-.team-desc {
-    font-size: 11px;
-    line-height: 1.4;
-    color: var(--text-gray);
-    margin-bottom: 12px;
-}   
-
-.btn-book-team {
-    display: inline-block;
-    width: 100%;
-    padding: 8px 0;
-    background: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 600;
-    transition: all 0.3s;
-}
-
-.btn-book-team:hover {
-    background: var(--gold);
-    color: #000;
-}
-
-/* Ценник */
-.section-programs {
-    padding: 50px 0;
-}
-
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
-
-.price-box {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 14px;
-    padding: 24px 20px;
-    text-align: center;
-    position: relative;
-    display: flex;           
-    flex-direction: column;   
-    justify-content: space-between; 
-}
-
-.price-box.featured {
-    border-color: var(--gold);
-    background: linear-gradient(180deg, #1f1c16 0%, var(--bg-card) 100%);
-}
-
-.badge-featured {
-    position: absolute;
-    top: -10px;
-    right: 15px;
-    background: var(--gold);
-    color: #000;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 10px;
-    text-transform: uppercase;
-}
-
-.price-box h3 {
-    font-size: 16px;
-    margin-bottom: 6px;
-}
-
-.price-box .time {
-    font-size: 12px;
-    color: var(--text-gray);
-    margin-bottom: 15px;
-}
-
-.price-box .cost {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--gold);
-    margin-bottom: 20px;
-}
-
-.price-box .cost span {
-    font-size: 15px;
-    color: var(--text-white);
-}
-
-.btn-book {
-    display: inline-block;
-    width: 100%;
-    padding: 8px 0;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.btn-book-gold {
-    background: var(--gold);
-    color: #000;
-    border: none;
-}
-
-/* Додатки */
-.section-addons {
-    padding: 40px 0;
-}
-
-.addons-list {
-    max-width: 700px;
-    margin: 0 auto;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 14px;
-    padding: 10px 20px;
-}
-
-.addon-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.addon-item:last-child {
-    border-bottom: none;
-}
-
-.addon-name {
-    font-size: 13px;
-    color: var(--text-white);
-}
-
-.addon-price {
-    font-weight: 700;
-    color: var(--gold);
-    font-size: 14px;
-}
-
-/* Конфиденциальность */
-.section-privacy {
-    padding: 40px 0 70px;
-}
-
-.privacy-box {
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 14px;
-    padding: 30px;
-    text-align: center;
-}
-
-.privacy-box h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    margin-bottom: 20px;
-}
-
-.privacy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    text-align: left;
-}
-
-.privacy-item h4 {
-    color: var(--gold);
-    font-size: 14px;
-    margin-bottom: 6px;
-}
-
-.privacy-item p {
-    font-size: 12px;
-    line-height: 1.5;
-    color: var(--text-gray);
-}
-
-/* Подвал */
-.footer {
-    padding: 20px 0 90px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    text-align: center;
-    font-size: 11px;
-    color: var(--text-gray);
-}
-
-.disclaimer {
-    margin-top: 4px;
-    color: #ef4444;
-}
-
-/* Sticky Mobile */
-.mobile-sticky-bar {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(13, 14, 17, 0.95);
-    padding: 10px 15px;
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
-    backdrop-filter: blur(10px);
-    z-index: 999;
-    gap: 10px;
-}
-
-.sticky-btn {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 11px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.sticky-whatsapp {
-    background: var(--whatsapp);
-    color: #fff;
-}
-
-.sticky-call {
-    background: var(--gold);
-    color: #000;
-}
-
-@media (max-width: 768px) {
-    .header-contacts .location-badge {
-        display: none;
-    }
-    .hero h1 {
-        font-size: 24px;
-    }
-    .happy-hours-banner {
-        flex-direction: column;
-        text-align: center;
-    }
-    .mobile-sticky-bar {
-        display: flex;
-    }
-    .hero-actions .btn {
-        width: 100%;
-    }
-}
-/* Карточки мастеров */
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
-}
-
-.team-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 14px;
-    overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease, border-color 0.3s ease;
 }
@@ -709,6 +313,220 @@ html {
 }
 
 .team-card:hover .btn-view-profile {
+    background: var(--gold);
+    color: #000;
+}
+
+/* Ценник */
+.section-programs {
+    padding: 50px 0;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.price-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.price-box.featured {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, #1f1c16 0%, var(--bg-card) 100%);
+}
+
+.badge-featured {
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    background: var(--gold);
+    color: #000;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
+.price-box h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.price-box .time {
+    font-size: 12px;
+    color: var(--text-gray);
+    margin-bottom: 15px;
+}
+
+.price-box .cost {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.price-box .cost span {
+    font-size: 15px;
+    color: var(--text-white);
+}
+
+.btn-book {
+    display: inline-block;
+    width: 100%;
+    padding: 8px 0;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.btn-book-gold {
+    background: var(--gold);
+    color: #000;
+    border: none;
+}
+
+/* Описание программ внутри ценника */
+.price-desc {
+    text-align: left !important;
+    margin-bottom: 20px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-grow: 1;
+}
+
+.program-type {
+    font-size: 11.5px;
+    color: var(--gold);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: left !important;
+}
+
+.program-type strong {
+    color: #fff;
+}
+
+.program-text {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 12.5px !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    color: var(--text-gray) !important;
+    text-align: left !important;
+    letter-spacing: normal !important;
+}
+
+/* Конфиденциальность */
+.section-privacy {
+    padding: 40px 0 70px;
+}
+
+.privacy-box {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    padding: 30px;
+    text-align: center;
+}
+
+.privacy-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.privacy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    text-align: left;
+}
+
+.privacy-item h4 {
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.privacy-item p {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-gray);
+}
+
+/* Подвал */
+.footer {
+    padding: 20px 0 90px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-gray);
+}
+
+.footer .disclaimer-18 {
+    color: #ff3333 !important;
+    font-weight: 600;
+    margin: 6px 0;
+    letter-spacing: 0.5px;
+}
+
+.footer .disclaimer-legal {
+    color: #888888;
+    font-size: 0.8rem;
+    max-width: 600px;
+    margin: 6px auto 0 auto;
+    line-height: 1.4;
+}
+
+/* Sticky Mobile */
+.mobile-sticky-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(13, 14, 17, 0.95);
+    padding: 10px 15px;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    gap: 10px;
+}
+
+.sticky-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.sticky-whatsapp {
+    background: var(--whatsapp);
+    color: #fff;
+}
+
+.sticky-call {
     background: var(--gold);
     color: #000;
 }
@@ -889,114 +707,21 @@ html {
     box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
 }
 
-.image-modal.active {
-    display: flex;
-}
-
-.modal-close {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    color: #fff;
-    font-size: 38px;
-    font-weight: 300;
-    cursor: pointer;
-    z-index: 2010;
-    line-height: 1;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content-wrapper {
-    width: 100%;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-}
-
-.modal-image {
-    max-width: 95%;
-    max-height: 100%;
-    object-fit: contain;
-    border-radius: 8px;
-    user-select: none;
-}
-
-.modal-nav {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    color: #fff;
-    font-size: 16px;
-    margin-top: 10px;
-    z-index: 2010;
-}
-
-.modal-prev, .modal-next {
-    font-size: 26px;
-    color: var(--gold);
-    cursor: pointer;
-    padding: 10px;
-    user-select: none;
-}
-
-.modal-counter {
-    font-size: 14px;
-    color: var(--text-gray);
-    letter-spacing: 1px;
-}
-.disclaimer-legal {
-    font-size: 0.8rem;
-    color: #777;
-    margin-top: 6px;
-    line-height: 1.4;
-}
-/* Яркий красный акцент для 18+ */
-.footer .disclaimer-18 {
-    color: #ff3333 !important;
-    font-weight: 600;
-    margin: 6px 0;
-    letter-spacing: 0.5px;
-}
-
-/* Юридический дисклеймер под ним */
-.footer .disclaimer-legal {
-    color: #888888;
-    font-size: 0.8rem;
-    max-width: 600px;
-    margin: 6px auto 0 auto;
-    line-height: 1.4;
-}
-
-/* Описание программ внутри ценника */
-.price-desc {
-    text-align: left;
-    margin-bottom: 20px;
-    padding-top: 14px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    flex-grow: 1;
-}
-
-.program-type {
-    font-size: 11.5px;
-    color: var(--gold);
-    margin-bottom: 8px;
-    line-height: 1.4;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.program-type strong {
-    color: #fff;
-}
-
-.program-text {
-    font-size: 12px;
-    line-height: 1.5;
-    color: var(--text-gray);
+@media (max-width: 768px) {
+    .header-contacts .location-badge {
+        display: none;
+    }
+    .hero h1 {
+        font-size: 24px;
+    }
+    .happy-hours-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .mobile-sticky-bar {
+        display: flex;
+    }
+    .hero-actions .btn {
+        width: 100%;
+    }
 }
