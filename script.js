@@ -38,8 +38,8 @@ const mastersData = {
         height: "170 cm",
         weight: "49 kg",
         breast: "2",
-        languages: "PL, EN",
-        bio: "Masaż tantryczny, relaksacyjny oraz zmysłowe rytuały w atmosferze pełnego spokoju i dyskrecji.",
+        languages: "PL, EN, RU, UA",
+        desc: "Masaż tantryczny, relaksacyjny oraz zmysłowe rytuały w atmosferze pełnego spokoju i dyskrecji.",
         photos: [
             "img/girl3_1.jpg",
             "img/girl3_2.jpg",
