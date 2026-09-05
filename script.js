@@ -72,24 +72,28 @@ let activeMasterKey = null;
 let currentPhotoIdx = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Перехват кликов для GTM / DataLayer
+    // Перехват кликов с передачей языка
     document.addEventListener('click', (e) => {
+        const currentLang = document.documentElement.lang || 'pl';
+
         const waLink = e.target.closest('a[href*="wa.me"]');
         if (waLink) {
             const master = waLink.getAttribute('data-target') || (activeMasterKey ? mastersData[activeMasterKey].name : 'General');
             window.dataLayer.push({
                 event: 'contact_whatsapp',
-                target_master: master
+                target_master: master,
+                page_language: currentLang
             });
-            console.log(`[DataLayer] Lead: WhatsApp -> ${master}`);
+            console.log(`[DataLayer] Lead: WhatsApp -> ${master} (${currentLang})`);
         }
 
         const telLink = e.target.closest('a[href^="tel:"]');
         if (telLink) {
             window.dataLayer.push({
-                event: 'contact_call'
+                event: 'contact_call',
+                page_language: currentLang
             });
-            console.log('[DataLayer] Lead: Call Click');
+            console.log(`[DataLayer] Lead: Call Click (${currentLang})`);
         }
     });
 
