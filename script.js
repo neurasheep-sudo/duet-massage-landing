@@ -72,21 +72,27 @@ let activeMasterKey = null;
 let currentPhotoIdx = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Перехват кликов с передачей языка
+    // Перехват кликов с передачей языка и параметров
     document.addEventListener('click', (e) => {
         const currentLang = document.documentElement.lang || 'pl';
 
+        // 1. Клик по WhatsApp
         const waLink = e.target.closest('a[href*="wa.me"]');
         if (waLink) {
+            // Если у кнопки есть явный data-target (кнопка в модалке) или открыта модалка — берем мастера, иначе строго General
             const master = waLink.getAttribute('data-target') || (activeMasterKey ? mastersData[activeMasterKey].name : 'General');
+            const service = waLink.getAttribute('data-service') || 'not_specified';
+
             window.dataLayer.push({
                 event: 'contact_whatsapp',
                 target_master: master,
+                service_name: service,
                 page_language: currentLang
             });
-            console.log(`[DataLayer] Lead: WhatsApp -> ${master} (${currentLang})`);
+            console.log(`[DataLayer] Lead: WhatsApp -> Master: ${master}, Service: ${service} (${currentLang})`);
         }
 
+        // 2. Клик по звонку
         const telLink = e.target.closest('a[href^="tel:"]');
         if (telLink) {
             window.dataLayer.push({
@@ -94,6 +100,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 page_language: currentLang
             });
             console.log(`[DataLayer] Lead: Call Click (${currentLang})`);
+        }
+
+        // 3. Клик по карточке цены / тарифу
+        const priceElement = e.target.closest('.price-card, .service-card, [data-service]');
+        // Проверяем, чтобы клик был не по ссылке WhatsApp (чтобы не дублировать событие)
+        if (priceElement && !e.target.closest('a[href*="wa.me"]')) {
+            const serviceName = priceElement.getAttribute('data-service') || 
+                                priceElement.querySelector('h3, .service-title')?.textContent?.trim() || 
+                                'Custom Price Item';
+
+            window.dataLayer.push({
+                event: 'select_item',
+                service_name: serviceName,
+                page_language: currentLang
+            });
+            console.log(`[DataLayer] Price Click: ${serviceName} (${currentLang})`);
         }
     });
 
@@ -135,9 +157,17 @@ window.openMasterModal = function(masterKey) {
     document.body.style.overflow = 'hidden';
 };
 
+// Закрытие модалки профиля (С ИСПРАВЛЕНИЕМ БАГА ЗАЛИПАНИЯ)
 window.closeMasterModal = function() {
     document.getElementById('masterModal').classList.remove('active');
     document.body.style.overflow = '';
+    
+    // СБРОС: очищаем активного мастера и кнопку модалки
+    activeMasterKey = null;
+    const bookBtn = document.getElementById('modalBookingBtn');
+    if (bookBtn) {
+        bookBtn.removeAttribute('data-target');
+    }
 };
 
 function updateModalPhoto() {
