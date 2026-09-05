@@ -771,31 +771,65 @@ span.lang-btn.active {
 }
 
 @media (max-width: 600px) {
-    /* Скрываем дублирующую кнопку звонка в шапке (она есть в нижнем баре) */
-    .btn-call-header {
+    /* Сжимаем контейнер по краям */
+    .header-container {
+        padding: 0 8px !important;
+        gap: 6px;
+    }
+
+    /* Компактный логотип */
+    .logo-img {
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+    }
+
+    .logo-text {
+        font-size: 13px !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    /* Правая контактная группа в одну линию */
+    .header-contacts {
+        gap: 6px !important;
+        align-items: center;
+    }
+
+    /* Часы работы: возвращаем показ, делаем компактными */
+    .hours-badge {
+        display: inline-flex !important;
+        font-size: 11px !important;
+        white-space: nowrap;
+    }
+
+    /* Убираем гео-метку Gliwice Centrum на мобилках, чтобы освободить место под часы и кнопку */
+    .location-badge {
         display: none !important;
     }
 
-    /* Делаем нормальные отступы по бокам */
-    .header-container {
-        padding: 0 10px;
+    /* Переключатель языка */
+    .lang-switch {
+        font-size: 11px !important;
+        gap: 3px !important;
     }
 
-    /* Уменьшаем текст логотипа, чтобы он не упирался в переключатель */
-    .logo-text {
-        font-size: 15px;
-        letter-spacing: 1px;
-    }
-
-    .logo-img {
+    /* Кнопка звонка: превращаем в круглую иконку 32x32 px без длинного текста */
+    .btn-call-header {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
         width: 32px !important;
         height: 32px !important;
-        min-width: 32px;
+        min-width: 32px !important;
+        padding: 0 !important;
+        font-size: 0 !important; /* скрывает текст "Zadzwoń" / "Call Us" */
+        border-radius: 50% !important;
     }
 
-    /* Компактный переключатель языка */
-    .lang-switch {
-        font-size: 12px;
-        gap: 4px;
+    /* Возвращаем саму иконку трубки внутри кнопки */
+    .btn-call-header::before {
+        content: '📞';
+        font-size: 13px;
+        line-height: 1;
     }
 }
