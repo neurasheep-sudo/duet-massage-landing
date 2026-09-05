@@ -725,3 +725,47 @@ html {
         width: 100%;
     }
 }
+/* Language Switcher */
+.lang-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+a.lang-btn {
+    color: var(--text-gray);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+a.lang-btn:hover {
+    color: #ffffff;
+}
+
+/* Активный язык - не ссылка, а обычный текст */
+span.lang-btn.active {
+    color: var(--gold);
+    cursor: default;
+}
+
+.lang-divider {
+    color: rgba(255, 255, 255, 0.25);
+    user-select: none;
+}
+/* Бейдж часов работы */
+.hours-badge {
+    font-size: 13px;
+    color: var(--text-gray);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+@media (max-width: 900px) {
+    .hours-badge {
+        display: none;
+    }
+}

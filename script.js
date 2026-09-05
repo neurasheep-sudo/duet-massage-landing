@@ -1,6 +1,6 @@
 window.dataLayer = window.dataLayer || [];
 
-// База данных мастеров
+// База данных мастеров с двуязычным описанием
 const mastersData = {
     eliza: {
         name: "Eliza",
@@ -9,13 +9,14 @@ const mastersData = {
         weight: "49 kg",
         breast: "3",
         langs: "PL, EN, RU, UA",
-        desc: "Masaż relaksacyjny, tantryczny oraz rytuały body-to-body w pełnej dyskrecji.",
+        desc_pl: "Masaż relaksacyjny, tantryczny oraz rytuały body-to-body w pełnej dyskrecji.",
+        desc_en: "Relaxation massage, tantric sessions, and body-to-body rituals with complete discretion.",
         photos: [
-            "img/girl1_1.jpg",
-            "img/girl1_2.jpg",
-            "img/girl1_3.jpg",
-            "img/girl1_4.jpg",
-            "img/girl1_5.jpg"
+            "/img/girl1_1.jpg",
+            "/img/girl1_2.jpg",
+            "/img/girl1_3.jpg",
+            "/img/girl1_4.jpg",
+            "/img/girl1_5.jpg"
         ]
     },
     lucja: {
@@ -25,26 +26,28 @@ const mastersData = {
         weight: "49 kg",
         breast: "3",
         langs: "PL, EN, DE",
-        desc: "Masaż relaksacyjny, tantryczny oraz rytuały body-to-body w pełnej dyskrecji.",
+        desc_pl: "Masaż relaksacyjny, tantryczny oraz rytuały body-to-body w pełnej dyskrecji.",
+        desc_en: "Relaxation massage, tantric sessions, and body-to-body rituals with complete discretion.",
         photos: [
-            "img/girl2_1.jpg",
-            "img/girl2_2.jpg",
-            "img/girl2_3.jpg"
+            "/img/girl2_1.jpg",
+            "/img/girl2_2.jpg",
+            "/img/girl2_3.jpg"
         ]
     },
-   alina: {
+    alina: {
         name: "Alina",
         age: "26",
         height: "170 cm",
         weight: "49 kg",
         breast: "2",
-        languages: "PL, EN, RU, UA",
-        desc: "Masaż tantryczny, relaksacyjny oraz zmysłowe rytuały w atmosferze pełnego spokoju i dyskrecji.",
+        langs: "PL, EN, RU, UA",
+        desc_pl: "Masaż tantryczny, relaksacyjny oraz zmysłowe rytuały w atmosferze pełnego spokoju i dyskrecji.",
+        desc_en: "Tantric massage, relaxation, and sensual rituals in an atmosphere of tranquility and absolute discretion.",
         photos: [
-            "img/girl3_1.jpg",
-            "img/girl3_2.jpg",
-            "img/girl3_3.jpg",
-            "img/girl3_4.jpg"
+            "/img/girl3_1.jpg",
+            "/img/girl3_2.jpg",
+            "/img/girl3_3.jpg",
+            "/img/girl3_4.jpg"
         ]
     },
     dagmara: {
@@ -54,12 +57,13 @@ const mastersData = {
         weight: "66 kg",
         breast: "4",
         langs: "PL, EN",
-        desc: "Masaż relaksacyjny, tantryczny oraz rytuały body-to-body w pełnej dyskrecji.",
+        desc_pl: "Masaż relaksacyjny, tantryczny oraz rytuały body-to-body w pełnej dyskrecji.",
+        desc_en: "Relaxation massage, tantric sessions, and body-to-body rituals with complete discretion.",
         photos: [
-            "img/girl4_1.jpg",
-            "img/girl4_2.jpg",
-            "img/girl4_3.jpg",
-            "img/girl4_4.jpg"
+            "/img/girl4_1.jpg",
+            "/img/girl4_2.jpg",
+            "/img/girl4_3.jpg",
+            "/img/girl4_4.jpg"
         ]
     }
 };
@@ -68,7 +72,7 @@ let activeMasterKey = null;
 let currentPhotoIdx = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Перехват кликов
+    // Перехват кликов для GTM / DataLayer
     document.addEventListener('click', (e) => {
         const waLink = e.target.closest('a[href*="wa.me"]');
         if (waLink) {
@@ -100,19 +104,26 @@ window.openMasterModal = function(masterKey) {
     activeMasterKey = masterKey;
     currentPhotoIdx = 0;
 
+    const isEnglish = document.documentElement.lang === 'en';
+
     document.getElementById('modalMasterName').textContent = master.name;
     document.getElementById('modalMasterLangs').textContent = `🗣 ${master.langs}`;
     document.getElementById('modalParamAge').textContent = master.age;
     document.getElementById('modalParamHeight').textContent = master.height;
     document.getElementById('modalParamWeight').textContent = master.weight;
     document.getElementById('modalParamBreast').textContent = master.breast;
-    document.getElementById('modalMasterDesc').textContent = master.desc;
+    
+    // Выбор описания по текущему языку страницы
+    document.getElementById('modalMasterDesc').textContent = isEnglish ? master.desc_en : master.desc_pl;
 
-    // Ссылка брони
+    // Ссылка брони WhatsApp
     const phone = "48502855086";
-    const msg = encodeURIComponent(`Dzień dobry, chciałbym umówić wizytę do ${master.name}`);
+    const waText = isEnglish 
+        ? `Hello, I would like to book a session with ${master.name}`
+        : `Dzień dobry, chciałbym umówić wizytę do ${master.name}`;
+    
     const bookBtn = document.getElementById('modalBookingBtn');
-    bookBtn.href = `https://wa.me/${phone}?text=${msg}`;
+    bookBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(waText)}`;
     bookBtn.setAttribute('data-target', master.name);
 
     updateModalPhoto();
@@ -152,6 +163,8 @@ window.prevModalPhoto = function() {
 
 function initModalSwipes() {
     const box = document.querySelector('.modal-slider-box');
+    if (!box) return;
+
     let startX = 0;
 
     box.addEventListener('touchstart', (e) => {
