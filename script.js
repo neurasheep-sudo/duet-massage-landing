@@ -68,7 +68,7 @@ const mastersData = {
     },
     beata: {
         name: "Beata",
-        langs: "🗣 PL, EN",
+        langs: "PL, EN",
         age: "30",
         height: "172 cm",
         weight: "62 kg", 
