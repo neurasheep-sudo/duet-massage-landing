@@ -228,3 +228,33 @@ function initModalSwipes() {
         }
     }, { passive: true });
 }
+// Находим элементы
+const modalImg = document.getElementById('modalProfileImg');
+const lightbox = document.getElementById('imageLightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+
+// Клик по фото в карточке открывает полноэкранный вид
+if (modalImg) {
+    modalImg.addEventListener('click', () => {
+        if (modalImg.src) {
+            lightboxImg.src = modalImg.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // блокируем скролл страницы
+        }
+    });
+}
+
+// Функция закрытия
+function closeLightbox() {
+    if (lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Закрытие по клавише Esc
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        closeLightbox();
+    }
+});

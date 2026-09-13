@@ -305,7 +305,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
         </div>
     </div>
-
+    <!-- Полноэкранный Lightbox для фото (EN) -->
+<div id="imageLightbox" class="image-lightbox" onclick="closeLightbox()">
+    <button type="button" class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <div class="lightbox-img-wrapper" onclick="event.stopPropagation()">
+        <img id="lightboxImg" src="" alt="Full view">
+    </div>
+</div>
     <script src="../script.js?v=7.0"></script>
 </body>
 </html>
