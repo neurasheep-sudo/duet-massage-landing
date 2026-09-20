@@ -39,7 +39,72 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="../style.css?v=7.2">
+    <link rel="stylesheet" href="../style.css?v=7.3">
+    <!-- Schema.org Structured Data (EN) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "HealthAndBeautyBusiness",
+          "@id": "https://duetmassage.pl/#salon",
+          "name": "Duet Massage Studio Gliwice",
+          "image": "https://duetmassage.pl/img/logo.jpg",
+          "telephone": "+48502855086",
+          "priceRange": "200 - 600 PLN",
+          "url": "https://duetmassage.pl/en/",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ul. Zwycięstwa 28",
+            "addressLocality": "Gliwice",
+            "postalCode": "44-100",
+            "addressCountry": "PL"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 50.2976,
+            "longitude": 18.6766
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+              "opens": "10:00",
+              "closes": "23:00"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What makes Nuru massage different from classical massage?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+"text": "Nuru massage is a sensual technique where the masseuse massages the client's body using her own body (body-to-body) along with specialized silky, high-slip oils."              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where is the salon located and is private parking available?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The studio is located in central Gliwice at ul. Zwycięstwa 28. Free, discreet on-site parking is available for all guests."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How can I book a session at Duet?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can book directly via phone call at +48 502 855 086 or message us via WhatsApp."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -227,7 +292,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
         </section>
-
+<!-- FAQ Section for Local SEO -->
+        <section class="section-faq">
+            <div class="container">
+                <div class="section-title">
+                    <span class="badge-gold">Frequently Asked Questions</span>
+                    <h2>Common Questions</h2>
+                    <p>Everything you should know before visiting our salon in Gliwice</p>
+                </div>
+                <div class="faq-grid">
+                    <div class="faq-card">
+                        <h3>What makes Nuru massage different from classical massage?</h3>
+<p>Nuru massage is an extraordinary full-body relaxation ritual using a specialized, unscented, high-slip massage oil. The masseuse applies smooth, fluid gliding motions with her entire body (body-to-body), ensuring profound physical relief and elevated sensory experiences.</p>                    </div>
+                    <div class="faq-card">
+                        <h3>Where is the salon located and is parking provided?</h3>
+                        <p>Studio Duet is located in downtown Gliwice at ul. Zwycięstwa 28. We provide free, fully discreet parking directly inside our private gated premises.</p>
+                    </div>
+                    <div class="faq-card">
+                        <h3>What should I prepare prior to the session?</h3>
+                        <p>No special preparation is needed. We supply private shower facilities, clean towels, disposable items, and premium cosmetics. Simply reserve your slot ahead of time via WhatsApp or phone.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Trust, Opening Hours & Discretion Section -->
         <section class="section-privacy">
             <div class="container">

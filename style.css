@@ -891,3 +891,36 @@ span.lang-btn.active {
     line-height: 1;
     z-index: 1000000;
 }
+/* Стили для SEO-блока FAQ */
+.section-faq {
+    padding: 50px 0;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.faq-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: left;
+}
+
+.faq-card h3 {
+    font-size: 16px;
+    color: var(--gold);
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.faq-card p {
+    font-size: 13px;
+    color: var(--text-gray);
+    line-height: 1.6;
+}
