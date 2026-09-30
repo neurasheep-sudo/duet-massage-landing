@@ -76,8 +76,10 @@ const mastersData = {
         desc_pl: "Zmysłowy masaż relaksacyjny, nuru oraz autorskie sesje body-to-body w atmosferze pełnej dyskrecji.",
         desc_en: "Sensual relaxing massage, nuru and signature body-to-body rituals in full discretion.",
         photos: [
-            "img/girl5_1.jpg",
-            "img/girl5_2.jpg"
+            "/img/girl5_1.jpg",
+            "/img/girl5_2.jpg",
+            "/img/girl5_3.jpg",
+            "/img/girl5_4.jpg"
         ]
     }
 };
