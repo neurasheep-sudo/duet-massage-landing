@@ -47,7 +47,9 @@ const mastersData = {
             "/img/girl3_1.jpg",
             "/img/girl3_2.jpg",
             "/img/girl3_3.jpg",
-            "/img/girl3_4.jpg"
+            "/img/girl3_4.jpg",
+            "/img/girl3_5.jpg",
+            "/img/girl3_6.jpg"
         ]
     },
     dagmara: {
